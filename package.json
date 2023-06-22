@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "main": "./index.js",
-  "author": "Jeferson-RS",
+  "author": "Jeferson-RS & Anderson B.O.B",
   "description": "A sync games app",
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
