@@ -12,51 +12,25 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true,
+      nodeIntegration: false,
       contextIsolation: false,
     },
   });
 
-  const filePath = store.get('filePath');
+  const serverProcess = spawn('python', ['server.py'])
 
-  if (filePath) {
-    mainWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}?path=${encodeURIComponent(filePath)}`);
-  } else {
-    mainWindow.loadURL(`file://${path.join(__dirname, '../build/index.html')}`);
-  }
+  serverProcess.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`)
+  })
 
+  serverProcess.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`)
+  })
+
+  // Encerrar o servidor Flask quando a janela do Electron for fechada
   mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+    serverProcess.kill()
+  })
 }
 
-ipcMain.on('select-directory', (event) => {
-  const { dialog } = require('electron');
-  dialog
-    .showOpenDialog(mainWindow, {
-      properties: ['openDirectory'],
-    })
-    .then((result) => {
-      if (!result.canceled && result.filePaths.length > 0) {
-        store.set('filePath', result.filePaths[0]);
-        event.sender.send('selected-directory', result.filePaths[0]);
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-});
-
-app.on('ready', createWindow);
-
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
-
-app.on('activate', () => {
-  if (mainWindow === null) {
-    createWindow();
-  }
-});
+app.whenReady().then(createWindow)
