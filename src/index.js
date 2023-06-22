@@ -1,11 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './Global.css';
+import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
+import { ipcRenderer } from 'electron';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ipcRenderer.on('selected-directory', (event, path) => {
+  console.log('Selected Directory:', path);
+});
+
+ReactDOM.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById('root')
 );

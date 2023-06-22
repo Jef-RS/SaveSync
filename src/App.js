@@ -1,6 +1,15 @@
+import React from 'react';
+import { ipcRenderer } from 'electron';
+
 function App() {
+  const handleOpenDirectory = () => {
+    ipcRenderer.send('select-directory');
+  };
+
   return (
-    <h1>Hello World</h1>
+    <div className="App">
+      <button onClick={handleOpenDirectory}>Abrir Diretório</button>
+    </div>
   );
 }
 
