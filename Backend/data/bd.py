@@ -22,8 +22,8 @@ session = Session()
 Game1 = Game(nome_do_game={} , diretorio_do_game_save={})
 Game2 = Game(nome_do_game= {}, diretorio_do_game_save={})
 
-#session.add(Game1)
-#session.add(Game2)
+session.add(Game1)
+session.add(Game2)
 
 session.commit()
 
