@@ -19,8 +19,8 @@ class Game(Base):
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
-Game1 = Game(nome_do_game={'teste'} , diretorio_do_game_save={'teste'})
-Game2 = Game(nome_do_game= {'teste'}, diretorio_do_game_save={'teste'})
+Game1 = Game(nome_do_game='teste' , diretorio_do_game_save='teste')
+Game2 = Game(nome_do_game= 'teste', diretorio_do_game_save='teste')
 
 session.add(Game1)
 #session.add(Game2)
