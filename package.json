@@ -2,7 +2,8 @@
   "name": "save-sync",
   "version": "0.1.0",
   "private": true,
-  "main": "./index.js",
+  "main": "public/electron.js",
+  "homepage": "./",
   "author": "Jeferson-RS & Anderson B.O.B",
   "description": "A sync games app",
   "dependencies": {
@@ -21,10 +22,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "electron-forge start && npm run app",
-    "app": "react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
-    "electron": "electron .",
+    "electron": "electron-forge start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "package": "electron-forge package",
