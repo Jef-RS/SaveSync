@@ -6,7 +6,7 @@ import os
 
 diretorio_atual = os.getcwd()
 caminho_banco_dados = os.path.join(diretorio_atual, 'banco_de_dados')
-engine = create_engine(f'sqlite:///{caminho_banco_dados}')
+engine = create_engine(f'sqlite:///data/{caminho_banco_dados}')
 
 Base = declarative_base()
 
