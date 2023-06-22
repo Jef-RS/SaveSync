@@ -5,8 +5,8 @@ from sqlalchemy import Column, Integer, String
 import os
 
 diretorio_atual = os.getcwd()
-caminho_banco_dados = os.path.join(diretorio_atual, 'banco_de_dados')
-engine = create_engine(f'sqlite:///data/{caminho_banco_dados}')
+caminho_banco_dados = os.path.join(diretorio_atual, 'data/banco_de_dados.db')
+engine = create_engine(f'sqlite:///{caminho_banco_dados}')
 
 Base = declarative_base()
 
@@ -19,11 +19,11 @@ class Game(Base):
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
-Game1 = Game(nome_do_game={} , diretorio_do_game_save={})
-Game2 = Game(nome_do_game= {}, diretorio_do_game_save={})
+Game1 = Game(nome_do_game={'teste'} , diretorio_do_game_save={'teste'})
+Game2 = Game(nome_do_game= {'teste'}, diretorio_do_game_save={'teste'})
 
 session.add(Game1)
-session.add(Game2)
+#session.add(Game2)
 
 session.commit()
 
