@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./electron.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.2.0",
+    "electron-reload": "^2.0.0-alpha.1"
+  },
+  "dependencies": {
+    "python-shell": "^5.0.0"
+  }
+}

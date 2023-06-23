@@ -3,7 +3,9 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
 # Diretório do Bd
-dir_backend = os.path.join('Backend')
+dir_atual = os.getcwd()
+dir_backend = f'{dir_atual}/Backend'
+print(dir_backend)
 
 # Cria a conexão com o banco de dados
 
