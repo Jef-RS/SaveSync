@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Electron App</title>
-</head>
-<body>
-    <h1>Renderizado com flask !</h1>
-    <script src=""></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SaveSync</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" type="image/x-icon">
+
+  </head>
+  <body>
+    <h1>💖 Save Sync</h1>
+    
+    <p>Welcome to your Saves Games application.</p>
+    <button><a style="text-decoration: none;color: rgb(12, 11, 11);" href="/home">Other Page</a></button>
+
+    <div class="container">
+      <img src="{{ url_for('static', filename='images/icon.png') }}" alt="Imagem">
+    </div>
+  </body>
 </html>
