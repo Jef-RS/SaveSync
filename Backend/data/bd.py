@@ -1,33 +1,91 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 
-diretorio_atual = os.getcwd()
-caminho_banco_dados = os.path.join(diretorio_atual, 'data/banco_de_dados.db')
-engine = create_engine(f'sqlite:///{caminho_banco_dados}')
+# Diretório do Bd
+dir_backend = os.path.join('Backend')
 
+# Cria a conexão com o banco de dados
+
+engine = create_engine(f'sqlite:///{dir_backend}/data/database.db')
 Base = declarative_base()
-
-class Game(Base):
-    __tablename__ = 'Games'
-    id = Column(Integer, primary_key=True)
-    nome_do_game = Column(String)
-    diretorio_do_game_save = Column(Integer)
-
-Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
-session = Session()
-Game1 = Game(nome_do_game='teste' , diretorio_do_game_save='teste')
-Game2 = Game(nome_do_game= 'teste', diretorio_do_game_save='teste')
 
-session.add(Game1)
-#session.add(Game2)
 
-session.commit()
+# Define a classe do modelo do Game
+class Game(Base):
+    __tablename__ = 'games'
+    
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    directory = Column(String)
 
-pessoas = session.query(Game).all()
 
-for Game in pessoas:
-    print(Game.nome_do_game, Game.diretorio_do_game_save)
+def create_game(name, directory):
+    # Cria uma nova instância do Game
+    game = Game(name=name, directory=directory)
+    
+    
+    # Inicia uma nova sessão
+    session = Session()
+    
+    try:
+        # Adiciona o jogo à sessão
+        session.add(game)
+        
+        # Salva as mudanças no banco de dados
+        session.commit()
+        
+        print("Jogo criado e salvo com sucesso!")
+    except Exception as e:
+        # Em caso de erro, faz rollback na transação
+        session.rollback()
+        
+        print("Erro ao criar e salvar o jogo:", str(e))
+    finally:
+        # Fecha a sessão
+        session.close()
+
+
+create_game("RUST", "/caminho/do/jogo")
+
+
+def read_games():
+    # Inicia uma nova sessão
+    session = Session()
+    
+    try:
+        # Consulta todos os jogos
+        games = session.query(Game).all()
+        
+        # Imprime os jogos encontrados
+        for game in games:
+            print(f"ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}")
+        
+    except Exception as e:
+        print("Erro ao ler os jogos:", str(e))
+    finally:
+        # Fecha a sessão
+        session.close()
+
+
+
+#read_games()
+
+def delete_database():
+    # Obtém uma nova sessão
+    session = Session()
+
+    try:
+        # Deleta todas as tabelas do banco de dados
+        Base.metadata.drop_all(bind=engine)
+
+        print("Banco de dados apagado com sucesso!")
+    except Exception as e:
+        print("Erro ao apagar o banco de dados:", str(e))
+    finally:
+        # Fecha a sessão
+        session.close()
+
+
+#delete_database()
