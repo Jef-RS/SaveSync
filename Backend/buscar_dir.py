@@ -1,8 +1,9 @@
 import os
+import winshell
+
+documents_path = winshell.folder("documents")
 
 
-diretorio_atual = os.getcwd()
-import os
 
 def buscar_arquivos_por_extensao(caminho, extensao):
     arquivos_encontrados = []
@@ -20,7 +21,8 @@ def buscar_arquivos_por_extensao(caminho, extensao):
     return arquivos_encontrados
 
 # Exemplo de uso
-caminho_documentos = os.path.expanduser("~\\Documents")
+caminho_documentos = documents_path
+print(caminho_documentos)
 extensao_procurada = ".txt"
 
 arquivos_encontrados = buscar_arquivos_por_extensao(caminho_documentos, extensao_procurada)
