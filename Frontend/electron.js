@@ -22,9 +22,8 @@ function getDirectories() {
   };
 }
 
-// Exemplo de uso
 const directories = getDirectories();
-console.log(directories.dirFrontendRoutes);
+
 
 const appPath = path.join(__dirname, '/');
 
@@ -40,7 +39,7 @@ function createWindow() {
     flaskScriptPath = path.join(backendPath);
     flaskProcess = spawn('python', [flaskScriptPath]);
   } else if (process.platform === 'linux') {
-    backendPath = '/Projetos/SaveSync/Backend/routes/app.py';
+    backendPath = directories.dirFrontendRoutes;
     flaskScriptPath = path.join(backendPath);
     flaskProcess = spawn('python3', [flaskScriptPath]);
   } else {
