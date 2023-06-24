@@ -2,8 +2,8 @@
  "name": "savesync",
   "version": "1.0.0",
   "description": "",
-  "icon": "./build/icon.png",
-  "main": "index.js",
+  "icon": "/static/images/icon.png",
+  "main": "electron.js",
   "scripts": {
     "start": "electron ./electron.js"
   },

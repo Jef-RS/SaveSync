@@ -15,9 +15,9 @@ app = Flask(__name__, template_folder=dir_frontend_templates, static_folder=dir_
 def start():
     return render_template('index.html')
 
-@app.route('/home')
+@app.route('/login')
 def page2():
-    return render_template('home.html')
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

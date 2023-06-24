@@ -1,8 +1,12 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
+const electronReload = require('electron-reload')
 
 
+
+ // Define o caminho para a pasta raiz do seu aplicativo
+const appPath = path.join(__dirname, '/');
 
 let mainWindow;
 let flaskProcess; // Variável para armazenar a referência do processo Flask
@@ -27,7 +31,7 @@ function createWindow() {
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: false
+      nodeIntegration: true
     }
   });
   
@@ -35,7 +39,7 @@ function createWindow() {
   // Carregar o servidor Flask no Electron
   mainWindow.loadURL('http://localhost:5000');
   
-  
+ 
 
   mainWindow.on('closed', function () {
     // Fechar a janela do Electron e encerrar o processo Flask
@@ -49,7 +53,7 @@ function createWindow() {
 app.on('ready', () => {
   createWindow();
   // Configurar o electron-reload para monitorar alterações nos arquivos do aplicativo
-
+  electronReload(appPath);
 });
 
 app.on('window-all-closed', function () {
@@ -67,4 +71,3 @@ app.on('activate', function () {
 });
 
 
-  
