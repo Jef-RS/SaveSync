@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
-  "productName": "my-app",
+  "name": "SaveSync",
+  "productName": "SaveSync",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "My SaveSync application description",
   "main": "electron.js",
   "scripts": {
     "start": "electron-forge start",
