@@ -1,48 +1,72 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 const { spawn } = require('child_process');
-const electronReload = require('electron-reload')
+const os = require('os');
 
+function getDirectories() {
+  const directory = __dirname;
+  const nameArq = path.basename(directory);
+  const rootDirectory = directory.slice(0, -'Backend/r'.length);
 
+  const dirAbSp = rootDirectory;
+  const dirFrontendRoutes = path.join(dirAbSp, 'Backend/routes/app.py');
+  const dirFrontendStatic = path.join(dirAbSp, 'Frontend/static');
 
- // Define o caminho para a pasta raiz do seu aplicativo
+  return {
+    directory,
+    nameArq,
+    rootDirectory,
+    dirAbSp,
+    dirFrontendRoutes,
+    dirFrontendStatic
+  };
+}
+
+// Exemplo de uso
+const directories = getDirectories();
+console.log(directories.dirFrontendRoutes);
+
 const appPath = path.join(__dirname, '/');
 
 let mainWindow;
-let flaskProcess; // Variável para armazenar a referência do processo Flask
+let flaskProcess;
 
 function createWindow() {
-  // Iniciar o servidor Flask
-  const backend_path = '/home/anderson/Projetos/SaveSync/Backend/routes/app.py';
-  const flaskScriptPath = path.join(backend_path);
-  flaskProcess = spawn('python', [flaskScriptPath]);
+  let backendPath;
+  let flaskScriptPath;
+
+  if (process.platform === 'win32') {
+    backendPath = directories.dirFrontendRoutes;
+    flaskScriptPath = path.join(backendPath);
+    flaskProcess = spawn('python', [flaskScriptPath]);
+  } else if (process.platform === 'linux') {
+    backendPath = '/Projetos/SaveSync/Backend/routes/app.py';
+    flaskScriptPath = path.join(backendPath);
+    flaskProcess = spawn('python3', [flaskScriptPath]);
+  } else {
+    throw new Error('Plataforma não suportada.');
+  }
 
   flaskProcess.stdout.on('data', (data) => {
     console.log(`Servidor Flask: ${data}`);
   });
 
   flaskProcess.stderr.on('data', (data) => {
-    console.error(` Flask: ${data}`);
+    console.error(`Flask: ${data}`);
   });
 
-
-  // Criar a janela do Electron
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      nodeIntegration: true
+      contextIsolation: true,
+      preload: path.join(__dirname, 'preload.js')
     }
   });
-  
 
-  // Carregar o servidor Flask no Electron
   mainWindow.loadURL('http://localhost:5000');
-  
- 
 
   mainWindow.on('closed', function () {
-    // Fechar a janela do Electron e encerrar o processo Flask
     mainWindow = null;
     if (flaskProcess) {
       flaskProcess.kill();
@@ -52,8 +76,6 @@ function createWindow() {
 
 app.on('ready', () => {
   createWindow();
-  // Configurar o electron-reload para monitorar alterações nos arquivos do aplicativo
-  electronReload(appPath);
 });
 
 app.on('window-all-closed', function () {
@@ -65,9 +87,5 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
   if (mainWindow === null) {
     createWindow();
-    app.relaunch()
   }
- 
 });
-
-

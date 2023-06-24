@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "icon": "/static/images/icon.png",
-  "main": "electron.js",
+  "main":"electron.js",
   "scripts": {
-    "start": "electron ./electron.js"
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
   "keywords": [],
   "author": "",
