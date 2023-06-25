@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Glegoo:wght@400;700&display=swap');
+
+:root {
+  --primary: #050018;
+  --secondary: #FEDC62;
+  --bg_color: rgba(254, 220, 98, 0.15);
+  --text_color: #FD6A00;
+}
+
+* {
+  margin: 0;
+  padding: 9;
+  box-sizing: border-box;
+  font-family: 'Glegoo', serif;
+  color: var(--text_color);
+}
+
+body {
+  background-color: var(--primary);
+  
+}
+
+.container {
+  padding: 20px;
+}
