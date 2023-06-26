@@ -5,21 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/global.css">
     <link rel="stylesheet" href="../static/css/home/index.css">
-    <title>Login</title>
+    <title>Cadastro</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1>Cadastro</h1>
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
-    <form method="POST" action="/login">
+    <form method="POST" action="/cadastro">
         <label for="username">Usuário:</label>
         <input type="text" name="username" id="username"><br><br>
         <label for="password">Senha:</label>
         <input type="password" name="password" id="password"><br><br>
-        <input type="submit" value="Entrar">
+        <label for="confirma_password">Confirme a senha:</label>
+        <input type="password" name="confirma_password" id="confirma_password"><br><br>
+        <input type="submit" value="Cadastrar">
     </form>
     <br>
-    <p>Não possui uma conta? <a href="/cadastro">Cadastre-se aqui</a></p>
+    <p>Já possui uma conta? <a href="/login">Faça login aqui</a></p>
 </body>
 </html>

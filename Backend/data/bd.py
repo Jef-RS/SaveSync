@@ -5,7 +5,6 @@ import os
 # Diretório do Bd
 dir_atual = os.getcwd()
 dir_backend = f'{dir_atual}/Backend'
-print(dir_backend)
 
 # Cria a conexão com o banco de dados
 
