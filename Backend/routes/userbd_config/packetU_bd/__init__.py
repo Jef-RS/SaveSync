@@ -5,49 +5,48 @@ import os
 # Diretório do Bd
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
-diretório_raiz = diretório[:-21]
+diretório_raiz = diretório[:-31]
 
 # Cria a conexão com o banco de dados
-print(f'Diretório do Banco de dados {diretório_raiz}')
-engine = create_engine(f'sqlite:///{diretório_raiz}/data/database.db')
+print(f'Diretório do Banco de dados {diretório_raiz}data/database.db')
+engine = create_engine(f'sqlite:///{diretório_raiz}data/database.db')
+
+
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
 
 
 # Define a classe do modelo do Game
-class Game(Base):
-    __tablename__ = 'games'
+class User(Base):
+    __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    directory = Column(String)
+    username = Column(String)
+    password = Column(String)
 
 
-def read_games():
+def read_users():
     # Inicia uma nova sessão
     session = Session()
 
     try:
         # Consulta todos os jogos
-        games = session.query(Game).all()
+        users = session.query(User).all()
 
         # Imprime os jogos encontrados
-        for game in games:
+        for user in users:
             print(
-                f'ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}'
+                f'ID: {user.id}, Nome: {user.username}, Password: {user.password}'
             )
 
     except Exception as e:
-        print('Erro ao ler os jogos:', str(e))
+        print('Erro ao ler os usuários:', str(e))
     finally:
         # Fecha a sessão
         session.close()
-    return print(
-        f'ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}'
-    )
 
 
-# read_games()
+read_users()
 
 
 def delete_database():

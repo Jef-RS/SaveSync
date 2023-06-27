@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request, redirect, url_for
+from gamebd_config import packetG_base, packetG_bd
+from userbd_config import packetU_base, packetU_bd
 
-# from Backend.game_config import packet_base, packet_bd
 import os, json
 
 
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
 diretório_raiz = diretório[: -len('Backend/routes')]
+
+print('Diretório para o banco de dados APP:', diretório_raiz)
 
 dir_absp = diretório_raiz
 dir_frontend_templates = f'{dir_absp}/Frontend/templates'
@@ -60,12 +63,15 @@ def chamar_funcao():
     try:
         jogo1 = str(request.form['jogo1'])
         jogo2 = str(request.form['jogo2'])
-        packet_base.adicionar_games_bd(jogo1, jogo2)
+        packetG_base.adicionar_games_bd(jogo1, jogo2)
 
     except BaseException as e:
         print(f'Quase lá {e}')
 
-    return 'SUCESSO' + json.dumps(packet_bd.read_games())
+    finally:
+        print('Gmae adicionado com sucesso! ')
+    
+    return 
 
 
 @app.route('/login', methods=['GET', 'POST'])
