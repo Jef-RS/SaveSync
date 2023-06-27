@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
-from Backend.game_config import packet_base, packet_bd
+#from Backend.game_config import packet_base, packet_bd
 import os , json
 
 
