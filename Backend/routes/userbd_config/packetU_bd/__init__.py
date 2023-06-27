@@ -30,10 +30,10 @@ def read_users():
     session = Session()
 
     try:
-        # Consulta todos os jogos
+        # Consulta todos os usuarios
         users = session.query(User).all()
 
-        # Imprime os jogos encontrados
+        # Imprime os usuarios encontrados
         for user in users:
             print(
                 f'ID: {user.id}, Nome: {user.username}, Password: {user.password}'
