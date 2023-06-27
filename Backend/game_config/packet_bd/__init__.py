@@ -5,9 +5,10 @@ import os
 # Diretório do Bd
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
-diretório_raiz= diretório[:-15]
-# Cria a conexão com o banco de dados
+diretório_raiz= diretório[:-21]
 
+# Cria a conexão com o banco de dados
+print(f'Diretório do Banco de dados {diretório_raiz}')
 engine = create_engine(f'sqlite:///{diretório_raiz}/data/database.db')
 Base = declarative_base()
 Session = sessionmaker(bind=engine)
@@ -39,9 +40,9 @@ def read_games():
     finally:
         # Fecha a sessão
         session.close()
+    return print(f"ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}")
 
-
-read_games()
+#read_games()
 
 def delete_database():
     # Obtém uma nova sessão
@@ -58,4 +59,4 @@ def delete_database():
         # Fecha a sessão
         session.close()
 
-# delete_database()
+#delete_database()

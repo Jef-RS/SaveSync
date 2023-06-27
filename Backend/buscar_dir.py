@@ -1,9 +1,8 @@
+
 import os
 import winshell
 
 documents_path = winshell.folder("documents")
-
-
 
 def buscar_arquivos_por_extensao(caminho, extensao):
     arquivos_encontrados = []

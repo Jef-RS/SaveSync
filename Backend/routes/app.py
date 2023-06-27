@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-import os
+from Backend.game_config import packet_base, packet_bd
+import os , json
+
 
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
@@ -16,6 +18,23 @@ app = Flask(__name__, template_folder=dir_frontend_templates, static_folder=dir_
 @app.route('/')
 def start():
     return render_template('index.html')
+
+@app.route('/test')
+def test():
+    return render_template('test.html')
+
+@app.route('/chamar_funcao', methods=['POST'])
+def chamar_funcao():
+
+    try:
+        jogo1 = str(request.form['jogo1'])
+        jogo2 = str(request.form['jogo2'])
+        packet_base.adicionar_games_bd(jogo1, jogo2)
+
+    except BaseException as e:
+        print(f'Quase lá {e}')
+
+    return "SUCESSO" + json.dumps(packet_bd.read_games())
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -49,6 +68,7 @@ def cadastro():
                 usuarios.append({'username': username, 'password': password})
                 return redirect(url_for('login'))
     return render_template('cadastro.html')
+
 
 
 @app.route('/home')

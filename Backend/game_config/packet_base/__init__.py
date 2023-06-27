@@ -6,13 +6,13 @@ import os
 
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
-dir_absp = diretório[:-17]
-
+dir_absp = diretório[:-23]
+print(f'Diretório para banco de dados {dir_absp}')
 dir_backend_utils = dir_absp
 
 # Cria a conexão com o banco de dados
 print(dir_backend_utils)
-engine = create_engine(f'sqlite:///{dir_backend_utils}/data/database.db')
+engine = create_engine(f'sqlite:///{dir_backend_utils}data/database.db')
 Session = sessionmaker(bind=engine)
 
 
