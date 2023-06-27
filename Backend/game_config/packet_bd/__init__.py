@@ -5,7 +5,7 @@ import os
 # Diretório do Bd
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
-diretório_raiz= diretório[:-21]
+diretório_raiz = diretório[:-21]
 
 # Cria a conexão com o banco de dados
 print(f'Diretório do Banco de dados {diretório_raiz}')
@@ -33,16 +33,22 @@ def read_games():
 
         # Imprime os jogos encontrados
         for game in games:
-            print(f"ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}")
+            print(
+                f'ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}'
+            )
 
     except Exception as e:
-        print("Erro ao ler os jogos:", str(e))
+        print('Erro ao ler os jogos:', str(e))
     finally:
         # Fecha a sessão
         session.close()
-    return print(f"ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}")
+    return print(
+        f'ID: {game.id}, Nome: {game.name}, Diretório: {game.directory}'
+    )
 
-#read_games()
+
+# read_games()
+
 
 def delete_database():
     # Obtém uma nova sessão
@@ -52,11 +58,12 @@ def delete_database():
         # Deleta todas as tabelas do banco de dados
         Base.metadata.drop_all(bind=engine)
 
-        print("Banco de dados apagado com sucesso!")
+        print('Banco de dados apagado com sucesso!')
     except Exception as e:
-        print("Erro ao apagar o banco de dados:", str(e))
+        print('Erro ao apagar o banco de dados:', str(e))
     finally:
         # Fecha a sessão
         session.close()
 
-#delete_database()
+
+# delete_database()

@@ -27,6 +27,7 @@ class Game(Base):
     name = Column(String)
     directory = Column(String)
 
+
 def adicionar_games_bd(game, diretório):
     # Cria a conexão com o banco de dados
     Session = sessionmaker(bind=engine)
@@ -47,14 +48,15 @@ def adicionar_games_bd(game, diretório):
         # Salva as mudanças no banco de dados
         session.commit()
 
-        print("Jogo criado e salvo com sucesso!")
+        print('Jogo criado e salvo com sucesso!')
     except Exception as e:
         # Em caso de erro, faz rollback na transação
         session.rollback()
 
-        print("Erro ao criar e salvar o jogo:", str(e))
+        print('Erro ao criar e salvar o jogo:', str(e))
     finally:
         # Fecha a sessão
         session.close()
 
-#adicionar_games_bd('teste', 'teste')
+
+# adicionar_games_bd('teste', 'teste')
