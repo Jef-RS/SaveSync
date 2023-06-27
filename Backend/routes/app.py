@@ -17,12 +17,14 @@ dir_frontend_static = f'{dir_absp}/Frontend/static'
 
 usuarios = []
 
+
 app = Flask(
     __name__,
     template_folder=dir_frontend_templates,
     static_folder=dir_frontend_static,
 )
-
+read_users = packetU_bd.read_users()
+print(read_users)
 
 @app.route('/')
 def start():
@@ -119,14 +121,15 @@ def cadastro():
         username = request.form['username']
         password = request.form['password']
         confirma_password = request.form['confirma_password']
+        
+        
         if password != confirma_password:
             error = 'As senhas não coincidem.'
         else:
-            for user in usuarios:
-                if user['username'] == username:
-                    error = 'Usuário já cadastrado.'
+            if read_users['username'] == username:
+                error = 'Usuário já cadastrado.'
             if error is None:
-                usuarios.append({'username': username, 'password': password})
+                append_data = packetU_base.adicionar_users_bd(username, password)
                 return redirect(url_for('login'))
     return render_template('cadastro.html')
 

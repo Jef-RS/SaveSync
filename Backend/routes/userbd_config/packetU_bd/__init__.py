@@ -28,25 +28,25 @@ class User(Base):
 def read_users():
     # Inicia uma nova sessão
     session = Session()
-
+    usuarios_salvos = []
+    
     try:
         # Consulta todos os usuarios
         users = session.query(User).all()
 
         # Imprime os usuarios encontrados
         for user in users:
-            print(
-                f'ID: {user.id}, Nome: {user.username}, Password: {user.password}'
-            )
+            usuarios_salvos.append({'username': user.username, 'password': user.password})
 
     except Exception as e:
         print('Erro ao ler os usuários:', str(e))
     finally:
         # Fecha a sessão
         session.close()
+        print(usuarios_salvos)
+    return usuarios_salvos[0]
 
-
-read_users()
+#read_users()
 
 
 def delete_database():
@@ -65,4 +65,4 @@ def delete_database():
         session.close()
 
 
-# delete_database()
+delete_database()
