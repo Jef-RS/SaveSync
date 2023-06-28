@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="../static/css/login/index.css">
     <title>Login</title>
     <script>
-        window.onload = function() {
+        /*window.onload = function() {
             var mensagem = '{{ mensagem }}';
             alert(mensagem);
-        };
+        };*/
     </script>
 </head>
 <body>
+    <div class="image-container">
+        <img style="width: 133px;" src="{{ url_for('static', filename='images/icon.png') }}" alt="Imagem">
+      </div>
     <div class="login-container">
     <h1>Login</h1>
     {% if error %}
