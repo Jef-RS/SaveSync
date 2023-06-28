@@ -9,14 +9,14 @@ diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
 diretório_raiz = diretório[: -len('Backend/routes')]
 
-print('Diretório para o banco de dados APP:', diretório_raiz)
+print('Diretório para o banco de dados APP:', diretório)
 
 dir_absp = diretório_raiz
 dir_frontend_templates = f'{dir_absp}/Frontend/templates'
 dir_frontend_static = f'{dir_absp}/Frontend/static'
 
 usuarios = []
-
+mensagem = "Bem Vindo! ao Save Sync"
 
 app = Flask(
     __name__,
@@ -86,13 +86,15 @@ def login():
     Caso contrário, uma mensagem de erro é exibida. Retorna um modelo renderizado
     para a página de login com a mensagem de erro (se houver).
     """
-
+    mensagem = "Bem Vindo! ao Save Sync"
     error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        for user in usuarios:
-            if user['username'] == username and user['password'] == password:
+        for dicionario in read_users:
+            usernamedict = dicionario['username']
+            passworddict = dicionario['password']
+            if username == usernamedict and password == passworddict:           
                 return redirect('home')
         error = 'Usuário ou senha inválidos.'
     return render_template('login.html', error=error)
@@ -117,21 +119,26 @@ def cadastro():
     """
 
     error = None
+    
+    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         confirma_password = request.form['confirma_password']
-        
-        
         if password != confirma_password:
             error = 'As senhas não coincidem.'
-        else:
-            if read_users['username'] == username:
+            print(error)
+        for dicionario in read_users:
+            usernamedict = dicionario['username']
+            passworddict = dicionario['password']
+            if username == usernamedict and password == passworddict:
                 error = 'Usuário já cadastrado.'
+                
             if error is None:
-                append_data = packetU_base.adicionar_users_bd(username, password)
+                packetU_base.adicionar_users_bd(username, password)
+                packetU_bd.read_users()
                 return redirect(url_for('login'))
-    return render_template('cadastro.html')
+    return render_template('cadastro.html', error = error, mensagem = 'Usuário cadastrado com sucesso.')
 
 
 @app.route('/home')

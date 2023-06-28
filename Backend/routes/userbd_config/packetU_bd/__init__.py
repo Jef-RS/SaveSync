@@ -43,9 +43,9 @@ def read_users():
     finally:
         # Fecha a sessão
         session.close()
-        print(usuarios_salvos)
-    return usuarios_salvos[0]
-
+    
+    return usuarios_salvos
+    
 #read_users()
 
 
@@ -65,4 +65,4 @@ def delete_database():
         session.close()
 
 
-delete_database()
+#delete_database()
