@@ -26,6 +26,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String)
     password = Column(String)
+    
 
 
 def adicionar_users_bd(user, password):
@@ -36,7 +37,7 @@ def adicionar_users_bd(user, password):
     Base.metadata.create_all(engine)
 
     # Cria uma nova instância do Game
-    users = User(username=f'{user}', password=f'{password}')
+    users = User(username=user, password=password)
 
     # Inicia uma nova sessão
     session = Session()

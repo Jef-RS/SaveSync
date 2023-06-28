@@ -119,8 +119,6 @@ def cadastro():
     """
 
     error = None
-    
-    
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
@@ -138,7 +136,7 @@ def cadastro():
                 packetU_base.adicionar_users_bd(username, password)
                 packetU_bd.read_users()
                 return redirect(url_for('login'))
-    return render_template('cadastro.html', error = error, mensagem = 'Usuário cadastrado com sucesso.')
+    return render_template('cadastro.html', error = error)
 
 
 @app.route('/home')
