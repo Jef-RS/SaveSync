@@ -36,7 +36,7 @@ function createWindow() {
   let backendPath;
   let flaskScriptPath;
   let isReloaded = false;
-
+  const iconPath = path.join(__dirname, '.../..', 'images', 'icon.png');
   if (process.platform === 'win32') {
     backendPath = directories.dirFrontendRoutes;
     flaskScriptPath = path.join(backendPath);

@@ -5,18 +5,20 @@ from time import sleep
 import os, json
 
 
+
+
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
 diretório_raiz = diretório[: -len('Backend/routes')]
 
-print('Diretório para o banco de dados APP:', diretório)
 
 dir_absp = diretório_raiz
 dir_frontend_templates = f'{dir_absp}/Frontend/templates'
-dir_frontend_static = f'{dir_absp}/Frontend/static'
+dir_frontend_static = f'{dir_absp}/Frontend/static/'
 
 usuarios = []
 
+image_list = ['profile__test.jpg']
 
 app = Flask(
     __name__,
@@ -24,9 +26,6 @@ app = Flask(
     static_folder=dir_frontend_static,
 )
 read_users = packetU_bd.read_users()
-mensagem = None
-if not read_users:
-    mensagem = "Bem Vindo! ao Save Sync"
 
 @app.route('/')
 def start():
@@ -41,6 +40,13 @@ def start():
     """
     return render_template('index.html')
 
+@app.route('/upload', methods=['POST'])
+def upload():
+    global image_file
+    image = request.files['image']
+    image.save(f'{dir_frontend_static}/images/profile_image/' + image.filename)
+    image_list.append(image.filename)
+    return redirect(url_for('page3'))
 
 @app.route('/test')
 def test():
@@ -88,7 +94,7 @@ def login():
     Caso contrário, uma mensagem de erro é exibida. Retorna um modelo renderizado
     para a página de login com a mensagem de erro (se houver).
     """
-    
+    mensagem = ' Seja bem-vindo.'
     error = None
     if request.method == 'POST':
         username = request.form['username']
@@ -151,8 +157,11 @@ def page3():
     Decorador que mapeia a URL '/home' para a função 'page3()'.
     Renderiza o template 'home.html' e retorna o resultado como um objeto de resposta.
     """
-    user_name = usuarios[-1]
-    return render_template('home.html', user_name=user_name)
+    for image in image_list:
+        image_file = image
+    for user in usuarios:
+        user_name = user
+    return render_template('home.html', user_name=user_name, imagefile=image_file) 
 
 
 if __name__ == '__main__':

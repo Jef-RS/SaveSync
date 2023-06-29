@@ -450,3 +450,4 @@ Backend/api/cliente_de_teste.json
 Backend/api/api.py
 Backend/api/test.py
 Backend/firebase/firebase.json
+Backend/firebase/api.json
