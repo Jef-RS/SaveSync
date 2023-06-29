@@ -26,7 +26,7 @@ function getDirectories() {
   };
 }
 
-// Exemplo de uso
+
 const directories = getDirectories();
 
 const appPath = path.join(__dirname, '/');
@@ -37,6 +37,7 @@ let flaskProcess;
 function createWindow() {
   let backendPath;
   let flaskScriptPath;
+  let isReloaded = false;
 
   if (process.platform === 'win32') {
     backendPath = directories.dirFrontendRoutes;
@@ -61,10 +62,12 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,
       preload: path.join(__dirname, 'preload.js')
     }
+    
   });
 
   mainWindow.loadURL('http://localhost:5000');
@@ -73,6 +76,12 @@ function createWindow() {
     mainWindow = null;
     if (flaskProcess) {
       flaskProcess.kill();
+    }
+  });
+  mainWindow.webContents.on('did-finish-load', () => {
+    if (!isReloaded) {
+      mainWindow.reload(); // Faz o reload da página apenas na primeira vez
+      isReloaded = true; // Define a variável isReloaded como true para evitar mais reloads
     }
   });
 }
@@ -92,3 +101,4 @@ app.on('activate', function () {
     createWindow();
   }
 });
+

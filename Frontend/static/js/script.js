@@ -1,22 +1,25 @@
-function handleCredentialResponse(response) {
-    // Receba a resposta do token de ID do Google
-    console.log(response.credential);
-}
-window.onload = function () {
-    // Configurar o formulário de login
-    var loginForm = document.getElementById('login-form');
-    loginForm.onsubmit = function (event) {
-        event.preventDefault();
-        var email = loginForm.email.value;
-        google.accounts.id.initialize({
-            client_id: 'SEU_CLIENT_ID',
-            callback: handleCredentialResponse,
-            cancel_on_tap_outside: false,
-            prompt_parent_id: 'login-form'
-        });
-        google.accounts.id.prompt({
-            callback: handleCredentialResponse,
-            login_hint: email
-        });
-    };
-};
+function exibirPopup() {
+    // Cria um elemento de div para o pop-up
+    var popup = document.createElement('div');
+    popup.className = 'popup';
+    
+    // Cria um elemento de parágrafo para exibir a mensagem
+    var mensagem = document.createElement('p');
+    mensagem.textContent = 'Usuário cadastrado com sucesso!';
+    
+    // Adiciona a mensagem ao pop-up
+    popup.appendChild(mensagem);
+    
+    // Adiciona o pop-up ao corpo do documento
+    document.body.appendChild(popup);
+    
+    // Remove o pop-up após 3 segundos
+    setTimeout(function() {
+      document.body.removeChild(popup);
+    }, 3000);
+  }
+  
+  
+  
+  exibirPopup();
+  

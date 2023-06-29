@@ -29,7 +29,7 @@ def read_users():
     # Inicia uma nova sessão
     session = Session()
     usuarios_salvos = []
-    
+    print('Lendo os usuários...')
     try:
         # Consulta todos os usuarios
         users = session.query(User).all()
@@ -43,10 +43,10 @@ def read_users():
     finally:
         # Fecha a sessão
         session.close()
-    print(usuarios_salvos)
+    
     return usuarios_salvos
     
-read_users()
+#read_users()
 
 
 def delete_database():

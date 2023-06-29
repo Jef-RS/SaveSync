@@ -18,7 +18,7 @@ def mostrar_todos_os_registros():
     metadata.reflect(bind=engine)
 
     # Obtendo a tabela desejada
-    sua_tabela = metadata.tables['games']
+    sua_tabela = metadata.tables['users']
 
     # Executando uma consulta para obter todos os registros da tabela
     conn = engine.connect()

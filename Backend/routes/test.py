@@ -1,12 +1,9 @@
 from userbd_config import packetU_base, packetU_bd
 
-read_users = packetU_bd.read_users()
-
+#sdel_bd = packetU_bd.delete_database()
+#read_users = packetU_bd.read_users()
+packetU_base.adicionar_users_bd('eusouanderson', '123')
 username = 'eusouanderson'
 
-print(read_users)
-if read_users['username'] == username:
-    error = 'Usuário já cadastrado.'
-    print(error)
-else:
-    print('Erro ao ler os usuários:')
+
+    

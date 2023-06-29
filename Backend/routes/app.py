@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from gamebd_config import packetG_base, packetG_bd
 from userbd_config import packetU_base, packetU_bd
-
+from time import sleep
 import os, json
 
 
@@ -24,7 +24,7 @@ app = Flask(
     static_folder=dir_frontend_static,
 )
 read_users = packetU_bd.read_users()
-print(read_users)
+
 
 @app.route('/')
 def start():
@@ -87,10 +87,12 @@ def login():
     para a página de login com a mensagem de erro (se houver).
     """
     mensagem = "Bem Vindo! ao Save Sync"
+    update_user()
     error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        usuarios.append(username)
         for dicionario in read_users:
             usernamedict = dicionario['username']
             passworddict = dicionario['password']
@@ -117,7 +119,7 @@ def cadastro():
             * Se o nome de usuário já estiver sendo utilizado: Retorna a mesma página 'cadastro.html' com uma mensagem de erro.
             * Se o usuário for registrado com sucesso: Redireciona para a página 'login'.
     """
-
+    
     error = None
     if request.method == 'POST':
         username = request.form['username']
@@ -125,7 +127,6 @@ def cadastro():
         confirma_password = request.form['confirma_password']
         if password != confirma_password:
             error = 'As senhas não coincidem.'
-            print(error)
         for dicionario in read_users:
             usernamedict = dicionario['username']
             passworddict = dicionario['password']
@@ -133,11 +134,21 @@ def cadastro():
                 error = 'Usuário já cadastrado.'
                 
             if error is None:
-                packetU_base.adicionar_users_bd(username, password)
-                packetU_bd.read_users()
-                return redirect(url_for('login'))
+                
+                error = 'Usuário criado e salvo com sucesso!'
+                add_user()
+                sleep(1)
+                return redirect(url_for('login', error=error))
     return render_template('cadastro.html', error = error)
-
+def add_user():
+    
+    username = request.form['username']
+    password = request.form['password']
+    packetU_base.adicionar_users_bd(username, password) 
+def update_user():
+    packetU_bd.read_users()
+    
+    return    
 
 @app.route('/home')
 def page3():
@@ -145,8 +156,8 @@ def page3():
     Decorador que mapeia a URL '/home' para a função 'page3()'.
     Renderiza o template 'home.html' e retorna o resultado como um objeto de resposta.
     """
-
-    return render_template('home.html')
+    user_name = usuarios[-1]
+    return render_template('home.html', user_name=user_name)
 
 
 if __name__ == '__main__':
