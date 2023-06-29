@@ -1,23 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Glegoo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanuman:wght@100;300;400;700&display=swap');
 
 :root {
   --primary: #050018;
-  --secondary: #FEDC62;
-  --bg_color: rgba(254, 220, 98, 0.15);
-  --text_color: #FD6A00;
+  --bg_color: #202020;
+  --text_color: #FEDC62;
+  --text_color_secondary: #FD6A00;
 }
 
 * {
   margin: 0;
   padding: 9;
   box-sizing: border-box;
-  font-family: 'Glegoo', serif;
   color: var(--text_color);
+  font-family: 'Hanuman', serif;
 }
 
 body {
   background-color: var(--primary);
-  
+}
+
+.hover:hover {
+  background-color: rgba(253, 106, 0, 0.5);
+  cursor: pointer;
+  transition: 180ms all ease;
 }
 
 .container {
