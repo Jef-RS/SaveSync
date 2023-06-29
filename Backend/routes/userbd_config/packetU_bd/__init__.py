@@ -23,6 +23,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String)
     password = Column(String)
+    image = Column(String)
 
 
 def read_users():
@@ -36,7 +37,7 @@ def read_users():
 
         # Imprime os usuarios encontrados
         for user in users:
-            usuarios_salvos.append({'username': user.username, 'password': user.password})
+            usuarios_salvos.append({'username': user.username, 'password': user.password, 'image': user.image})
 
     except Exception as e:
         print('Erro ao ler os usuários:', str(e))
@@ -46,7 +47,7 @@ def read_users():
     
     return usuarios_salvos
     
-#read_users()
+read_users()
 
 
 def delete_database():

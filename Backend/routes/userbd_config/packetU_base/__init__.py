@@ -6,13 +6,14 @@ import os
 
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
-dir_absp = diretório[:-33]
-print(f'Diretório para banco de dados USERBASE {f"{dir_absp}data/database.db"}')
-
+dir_backend = diretório[:-33]
+dir_frontend = f'{dir_backend[:-8]}Frontend/static/images/profile_image/png.jpg'
+print(f'Diretório para banco de dados USERBASE {f"{dir_backend}data/database.db"}')
+print('Diretório para o banco de dados APP:', dir_frontend)
 
 # Cria a conexão com o banco de dados
 
-engine = create_engine(f'sqlite:///{dir_absp}data/database.db')
+engine = create_engine(f'sqlite:///{dir_backend}data/database.db')
 Session = sessionmaker(bind=engine)
 
 
@@ -26,7 +27,7 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String)
     password = Column(String)
-    
+    image = Column(String)
 
 
 def adicionar_users_bd(user, password):
@@ -37,7 +38,7 @@ def adicionar_users_bd(user, password):
     Base.metadata.create_all(engine)
 
     # Cria uma nova instância do Game
-    users = User(username=user, password=password)
+    users = User(username=user, password=password, image=dir_frontend)
 
     # Inicia uma nova sessão
     session = Session()
