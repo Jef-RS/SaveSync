@@ -11,7 +11,6 @@ diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
 diretório_raiz = diretório[: -len('Backend/routes')]
 
-print('Diretório para IMAGEM:', diretório)
 
 dir_absp = diretório_raiz
 dir_frontend_templates = f'{dir_absp}/Frontend/templates'

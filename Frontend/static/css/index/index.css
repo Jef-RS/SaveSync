@@ -6,6 +6,10 @@ body {
 .image-container{
 text-align: center;
 margin-bottom: 0;
+}
+.image-container img{
+    width: 20%;
+    height: 100%;
 
 }
 header {
