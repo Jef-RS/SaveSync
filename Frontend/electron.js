@@ -5,8 +5,6 @@ const os = require('os');
 
 
 
-
-
 function getDirectories() {
   const directory = __dirname;
   const nameArq = path.basename(directory);

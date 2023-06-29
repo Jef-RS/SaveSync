@@ -16,7 +16,7 @@ dir_frontend_templates = f'{dir_absp}/Frontend/templates'
 dir_frontend_static = f'{dir_absp}/Frontend/static'
 
 usuarios = []
-mensagem = "Bem Vindo! ao Save Sync"
+
 
 app = Flask(
     __name__,
@@ -24,7 +24,9 @@ app = Flask(
     static_folder=dir_frontend_static,
 )
 read_users = packetU_bd.read_users()
-
+mensagem = None
+if not read_users:
+    mensagem = "Bem Vindo! ao Save Sync"
 
 @app.route('/')
 def start():
@@ -86,8 +88,7 @@ def login():
     Caso contrário, uma mensagem de erro é exibida. Retorna um modelo renderizado
     para a página de login com a mensagem de erro (se houver).
     """
-    mensagem = "Bem Vindo! ao Save Sync"
-    update_user()
+    
     error = None
     if request.method == 'POST':
         username = request.form['username']
@@ -99,7 +100,7 @@ def login():
             if username == usernamedict and password == passworddict:           
                 return redirect('home')
         error = 'Usuário ou senha inválidos.'
-    return render_template('login.html', error=error)
+    return render_template('login.html', error=error, mensagem=mensagem)
 
 
 @app.route('/cadastro', methods=['GET', 'POST'])
@@ -134,22 +135,16 @@ def cadastro():
                 error = 'Usuário já cadastrado.'
                 
             if error is None:
-                
-                error = 'Usuário criado e salvo com sucesso!'
                 add_user()
                 sleep(1)
-                return redirect(url_for('login', error=error))
+                return redirect(url_for('login'))
     return render_template('cadastro.html', error = error)
 def add_user():
     
     username = request.form['username']
     password = request.form['password']
     packetU_base.adicionar_users_bd(username, password) 
-def update_user():
-    packetU_bd.read_users()
     
-    return    
-
 @app.route('/home')
 def page3():
     """

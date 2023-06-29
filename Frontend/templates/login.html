@@ -18,7 +18,8 @@
         <img style="width: 133px;" src="{{ url_for('static', filename='images/icon.png') }}" alt="Imagem">
       </div>
     <div class="login-container">
-    <h1>Login</h1>
+    <h1>Login </h1>
+    <h4>{{ mensagem }}</h4>
     {% if error %}
         <p style="color: red;">{{ error }}</p>
     {% endif %}
