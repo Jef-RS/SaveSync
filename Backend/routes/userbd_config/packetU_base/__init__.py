@@ -60,4 +60,4 @@ def adicionar_users_bd(user, password):
         # Fecha a sessão
         session.close()
 
-#adicionar_users_bd('admin', '123')
+adicionar_users_bd('admin', '123')
