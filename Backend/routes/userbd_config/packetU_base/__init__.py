@@ -7,7 +7,7 @@ import os
 diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
 dir_backend = diretório[:-33]
-dir_frontend = f'{dir_backend[:-8]}Frontend/static/images/profile_image/png.jpg'
+dir_frontend = f'{dir_backend[:-8]}Frontend/static/images/profile_image/*'
 print(f'Diretório para banco de dados USERBASE {f"{dir_backend}data/database.db"}')
 print('Diretório para o banco de dados APP:', dir_frontend)
 
@@ -60,4 +60,4 @@ def adicionar_users_bd(user, password):
         # Fecha a sessão
         session.close()
 
-adicionar_users_bd('admin', '123')
+#adicionar_users_bd('admin', '123')
