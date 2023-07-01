@@ -21,9 +21,7 @@ usuarios = []
 image_list = ['profile__test.jpg']
 
 app = Flask(
-    __name__,
-    template_folder=dir_frontend_templates,
-    static_folder=dir_frontend_static,
+    __name__
 )
 read_users = packetU_bd.read_users()
 

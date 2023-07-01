@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>SaveSync</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="../static/css/global.css">
+    <link rel="stylesheet" href="../static/css/index/index.css">
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+  </head>
+  <body>
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="/login">Login</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+      
+      <div class="image-container">
+        <img style="width: 133px;" src="{{ url_for('static', filename='images/icon.png') }}" alt="Imagem">
+      </div>
+    </header>
+    <section class="hero">
+      <div class="hero-content">
+        <h2>Save Sync, and Share Your Game Advance </h2>
+        <p>Effortlessly manage and collaborate on your files in one place.</p>
+        <a href="/login" class="cta-button">Get Started</a>
+      </div>
+    </section>
+    <section class="features">
+      <div class="feature">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <h3>Cloud Storage</h3>
+        <p>Securely store your game advance  in the cloud and access them from anywhere.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-sync"></i>
+        <h3>Sync Across Devices</h3>
+        <p>Keep your files in sync across all your devices whith S.O Windows automatically.</p>
+      </div>
+      <div class="feature">
+        <i class="fas fa-share-alt"></i>
+        <h3>Easy File Sharing</h3>
+        <p>Share files with colleagues and friends with just a few clicks.</p>
+      </div>
+    </section>
+    <footer>
+      <p>&copy; 2023 Save Sync. All rights reserved.</p>
+    </footer>
+    
+  </body>
+</html>

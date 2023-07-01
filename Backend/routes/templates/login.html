@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/global.css">
+    <link rel="stylesheet" href="../static/css/login/index.css">
+    <title>Login</title>
+    <script>
+        /*window.onload = function() {
+            var mensagem = '{{ mensagem }}';
+            alert(mensagem);
+        };*/
+    </script>
+</head>
+<body>
+    <div class="image-container">
+        <img style="width: 133px;" src="{{ url_for('static', filename='images/icon.png') }}" alt="Imagem">
+      </div>
+    <div class="login-container">
+    <h1>Login </h1>
+    <h4>{{ mensagem }}</h4>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="/login">
+        <label for="username">Usuário:</label>
+        <input type="text" name="username" id="username" required><br><br>
+        <label for="password">Senha:</label>
+        <input type="password" name="password" id="password" required><br><br>
+        <input type="submit" value="Entrar">
+    </form>
+    <br>
+    <p>Não possui uma conta? <a href="/cadastro">Cadastre-se aqui</a></p>
+</body>
+</html>
