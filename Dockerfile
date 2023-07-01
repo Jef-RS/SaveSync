@@ -14,7 +14,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia o código da aplicação para o diretório de trabalho
-COPY . .
+COPY Backend .
 
 # Expõe a porta em que o Flask irá rodar
 EXPOSE 5000
