@@ -20,4 +20,4 @@ COPY Backend .
 EXPOSE 5000
 
 # Define o comando para iniciar a aplicação Flask
-CMD cd Backend/routes ["python", "app.py"]
+CMD cd routes ["python", "app.py"]
