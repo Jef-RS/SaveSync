@@ -14,10 +14,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copia o código da aplicação para o diretório de trabalho
-COPY Backend .
+COPY Backend /app/Backend
 
 # Expõe a porta em que o Flask irá rodar
 EXPOSE 5000
 
 # Define o comando para iniciar a aplicação Flask
-CMD cd routes ["python", "app.py"]
+CMD python Backend/routes/app.py
