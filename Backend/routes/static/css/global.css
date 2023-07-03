@@ -8,6 +8,10 @@
   --text_color_secondary: #FD6A00;
 }
 
+input{
+  color: #000;
+}
+
 * {
   margin: 0;
   padding: 9;

@@ -46,7 +46,7 @@ def adicionar_users_bd(user, password):
     try:
         # Adiciona o jogo à sessão
         session.add(users)
-
+        
         # Salva as mudanças no banco de dados
         session.commit()
 

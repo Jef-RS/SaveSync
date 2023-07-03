@@ -93,6 +93,7 @@ def login():
     para a página de login com a mensagem de erro (se houver).
     """
     mensagem = ' Seja bem-vindo.'
+    read_users = packetU_bd.read_users()
     error = None
     if request.method == 'POST':
         username = request.form['username']
@@ -124,30 +125,26 @@ def cadastro():
             * Se o nome de usuário já estiver sendo utilizado: Retorna a mesma página 'cadastro.html' com uma mensagem de erro.
             * Se o usuário for registrado com sucesso: Redireciona para a página 'login'.
     """
-    
+    read_users = packetU_bd.read_users()
     error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
         confirma_password = request.form['confirma_password']
+        
         if password != confirma_password:
             error = 'As senhas não coincidem.'
-        for dicionario in read_users:
-            usernamedict = dicionario['username']
-            passworddict = dicionario['password']
-            if username == usernamedict and password == passworddict:
+
+        for dict in read_users:
+            if username == dict['username']:
                 error = 'Usuário já cadastrado.'
-                
-            if error is None:
-                add_user()
-                sleep(1)
-                return redirect(url_for('login'))
+                    
+        if error is None:
+            packetU_base.adicionar_users_bd(username, password) 
+            print('SEM ERRO !')
+            return redirect(url_for('login'))
     return render_template('cadastro.html', error = error)
-def add_user():
-    
-    username = request.form['username']
-    password = request.form['password']
-    packetU_base.adicionar_users_bd(username, password) 
+
     
 @app.route('/home')
 def page3():
@@ -164,3 +161,5 @@ def page3():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+
