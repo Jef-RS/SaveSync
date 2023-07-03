@@ -13,8 +13,8 @@ diretório_raiz = diretório[: -len('Backend/routes')]
 
 
 dir_absp = diretório_raiz
-dir_frontend_templates = f'{dir_absp}/Frontend/templates'
-dir_frontend_static = f'{dir_absp}/Frontend/static/'
+dir_frontend_templates = f'{dir_absp}/Backend/routes/templates'
+dir_frontend_static = f'{dir_absp}/Backend/routes/static/'
 
 usuarios = []
 
