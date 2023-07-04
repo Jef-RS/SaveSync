@@ -77,7 +77,7 @@ def chamar_funcao():
         print(f'Quase lá {e}')
 
     finally:
-        print('Gmae adicionado com sucesso! ')
+        print('Game e adicionado com sucesso! ')
     
     return 
 
