@@ -44,6 +44,7 @@ def upload():
     image = request.files['image']
     image.save(f'{dir_frontend_static}/images/profile_image/' + image.filename)
     image_list.append(image.filename)
+    
     return redirect(url_for('page3'))
 
 @app.route('/test')
@@ -92,6 +93,7 @@ def login():
     Caso contrário, uma mensagem de erro é exibida. Retorna um modelo renderizado
     para a página de login com a mensagem de erro (se houver).
     """
+    
     mensagem = ' Seja bem-vindo.'
     read_users = packetU_bd.read_users()
     error = None
