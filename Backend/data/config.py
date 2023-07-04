@@ -4,7 +4,7 @@ import os
 diretório = os.path.dirname(__file__)
 dir_absp = diretório[:-4]
 
-print(dir_absp)
+
 dir_backend_utils = dir_absp
 
 def mostrar_todos_os_registros():
@@ -30,4 +30,4 @@ def mostrar_todos_os_registros():
 
     # Fechando a conexão
     conn.close()
-mostrar_todos_os_registros()
+#mostrar_todos_os_registros()

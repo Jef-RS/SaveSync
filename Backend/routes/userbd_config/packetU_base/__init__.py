@@ -8,8 +8,6 @@ diretório = os.path.dirname(__file__)
 name_arq = os.path.basename(diretório)
 dir_backend = diretório[:-33]
 dir_frontend = f'{dir_backend[:-8]}Frontend/static/images/profile_image/*'
-print(f'Diretório para banco de dados USERBASE {f"{dir_backend}data/database.db"}')
-print('Diretório para o banco de dados APP:', dir_frontend)
 
 # Cria a conexão com o banco de dados
 

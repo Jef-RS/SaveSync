@@ -8,7 +8,7 @@ name_arq = os.path.basename(diretório)
 diretório_raiz = diretório[:-31]
 
 # Cria a conexão com o banco de dados
-print(f'Diretório do Banco de dados {diretório_raiz}data/database.db')
+
 engine = create_engine(f'sqlite:///{diretório_raiz}data/database.db')
 
 
@@ -44,10 +44,10 @@ def read_users():
     finally:
         # Fecha a sessão
         session.close()
-    print(usuarios_salvos)
+    
     return usuarios_salvos
     
-read_users()
+#read_users()
 
 
 def delete_database():

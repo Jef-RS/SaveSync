@@ -8,8 +8,6 @@ name_arq = os.path.basename(diretório)
 diretório_raiz = diretório[:-8]
 
 
-print(f'Diretório do Banco de dados {diretório_raiz}')
-
 # Initialize the Firebase app
 cred = credentials.Certificate(f"{diretório_raiz}firebase/firebase.json")
 firebase_admin.initialize_app(cred)
