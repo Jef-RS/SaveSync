@@ -40,7 +40,7 @@ def start():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    global image_file
+    
     image = request.files['image']
     image.save(f'{dir_frontend_static}/images/profile_image/' + image.filename)
     image_list.append(image.filename)
