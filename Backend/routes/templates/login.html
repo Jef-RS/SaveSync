@@ -14,23 +14,29 @@
     </script>
 </head>
 <body>
-    <div class="image-container">
-        <img style="width: 133px;" src="{{ url_for('static', filename='images/icon.png') }}" alt="Imagem">
-      </div>
-    <div class="login-container">
-    <h1>Login </h1>
-    <h4>{{ mensagem }}</h4>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form method="POST" action="/login">
-        <label for="username">Usuário:</label>
-        <input type="text" name="username" id="username" required><br><br>
-        <label for="password">Senha:</label>
-        <input type="password" name="password" id="password" required><br><br>
-        <input type="submit" value="Entrar">
-    </form>
-    <br>
-    <p>Não possui uma conta? <a href="/cadastro">Cadastre-se aqui</a></p>
+    <header class="login__header container">
+        <img class="login__header__image" src="{{ url_for('static', filename='images/icon.png') }}" alt="Logo SaveSync">
+    </header>
+    <main class="login__main container">
+        <form class="login__main__form" method="POST" action="/login">
+            <h2 class="login__main__title">Sign in</h2>
+            {% if error %}
+                <p style="color: rgb(218, 97, 97); font-size: 8px; margin-bottom: 8px;">{{ error }}</p>
+            {% endif %}
+            <label class="login__main__label" for="username">Username</label>
+            <input class="login__main__input" type="text" name="username" id="username" required>
+            <div class="login__main__label__container">
+                <label class="login__main__label" for="password">Password</label>
+                <small class="login__main__recovery">Forgot Password ?</small>
+            </div>
+            <input class="login__main__input" type="password" name="password" id="password" required>
+            <input class="login__main__submit hover_2" type="submit" value="Login">
+            <small class="login__main__register">Don't have an account? <a class="login__main__link" href="/cadastro">Sign-up</a></small>
+            <div class="login__main__google hover_2">
+                <img class="login__main__google__icon" src="../static/images/google_icon.svg" alt="">
+                <p class="login__main__google__text hover_2">Login with Google</p>
+            </div>
+        </form>
+    </main>
 </body>
 </html>
