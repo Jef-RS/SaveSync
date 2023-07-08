@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from gamebd_config import packetG_base, packetG_bd
 from userbd_config import packetU_base, packetU_bd
 from time import sleep
-import os, json
+import os
 
 
 
@@ -46,41 +46,6 @@ def upload():
     image_list.append(image.filename)
     
     return redirect(url_for('page3'))
-
-@app.route('/test')
-def test():
-    """
-    Esta função é um decorador de rota para o endpoint '/test' que aceita requisições GET.
-    Quando chamada, ela renderiza o modelo 'test.html' e retorna o resultado como um objeto de resposta.
-    Retorna:
-        Um modelo HTML renderizado como um objeto de resposta.
-    """
-    return render_template('test.html')
-
-
-@app.route('/chamar_funcao', methods=['POST'])
-def chamar_funcao():
-    """
-    Esta função é um endpoint da aplicação Flask que adiciona dois jogos a um banco de dados através de uma
-    requisição POST. Os jogos são obtidos dos campos 'jogo1' e 'jogo2' do formulário da requisição. A função
-    retorna um JSON contendo todos os jogos no banco de dados. Se uma exceção for lançada, a função exibe uma
-    mensagem de erro e retorna None.
-
-    :return: Um JSON contendo todos os jogos no banco de dados.
-    """
-
-    try:
-        jogo1 = str(request.form['jogo1'])
-        jogo2 = str(request.form['jogo2'])
-        packetG_base.adicionar_games_bd(jogo1, jogo2)
-
-    except BaseException as e:
-        print(f'Quase lá {e}')
-
-    finally:
-        print('Game e adicionado com sucesso! ')
-    
-    return 
 
 
 @app.route('/login', methods=['GET', 'POST'])
