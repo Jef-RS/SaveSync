@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 
-Game_ID = 1593500
+Game_ID = 324800
 steam_game_name = f"https://store.steampowered.com/app/{Game_ID}"
 
 
