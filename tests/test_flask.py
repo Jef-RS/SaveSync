@@ -11,7 +11,8 @@ class FlaskTest(unittest.TestCase):
             return 'Hello, Flask!'
 
     def test_flask_running(self):
-        response = requests.get('http://localhost:5000/')
+        base_url = 'https://save-sync.onrender.com'
+        response = requests.get(f'{base_url}')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.text, 'Hello, Flask!')
 
