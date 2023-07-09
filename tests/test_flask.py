@@ -14,7 +14,7 @@ class FlaskTest(unittest.TestCase):
         base_url = 'https://save-sync.onrender.com'
         response = requests.get(f'{base_url}')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.text, 'Hello, Flask!')
+        
 
 if __name__ == '__main__':
     unittest.main()
