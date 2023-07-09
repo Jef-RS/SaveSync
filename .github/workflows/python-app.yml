@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  test-on-linux:
 
     runs-on: ubuntu-latest
 
@@ -41,7 +41,7 @@ jobs:
 
   test-on-windows:
     runs-on: windows-latest
-    needs: build
+    needs: test-on-linux
 
     steps:
     - uses: actions/checkout@v3
