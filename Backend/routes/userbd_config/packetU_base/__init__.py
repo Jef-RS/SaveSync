@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
-
+import shutil
 import os
 
 diretório = os.path.dirname(__file__)
@@ -20,6 +20,7 @@ Base = declarative_base()
 
 # Define a classe do modelo
 class User(Base):
+    
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
