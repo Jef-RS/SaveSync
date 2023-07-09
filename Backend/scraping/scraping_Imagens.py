@@ -3,16 +3,19 @@ import requests
 from bs4 import BeautifulSoup
 
 
+Game_ID = 252490
 
-Game_ID = 324800
 steam_game_name = f"https://store.steampowered.com/app/{Game_ID}"
-
 
 steam_URL = f'https://cdn.akamai.steamstatic.com/steam/apps/{Game_ID}/header.jpg'
 
-
 responseName = requests.get(steam_game_name)
 response = requests.get(steam_URL)
+
+
+assert response.status_code and responseName.status_code == 200
+
+
 html_content = responseName.text
 
 soup = BeautifulSoup(html_content, "html.parser")
@@ -31,6 +34,7 @@ if match:
 else:
     print("Título não encontrado.")
 
+
 def append_image():
     """
         A function that appends an image to 'Imagens_dos_games/header.jpg' if the response status code is 200.
@@ -40,7 +44,7 @@ def append_image():
         print('OK')
         try:
 
-            with open(f'Backend/routes/static/images/api_Imagens/header.jpg', 'wb') as f:
+            with open(f'Backend/routes/static/images/api_Imagens/{title}.jpg', 'wb') as f:
                 f.write(response.content)
         except Exception as e:
             print(e)
