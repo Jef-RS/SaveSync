@@ -99,6 +99,7 @@
     padding: 8px 0;
     font-size: 12px;
     border-radius: 4px;
+    overflow-wrap: break-word;
 }
 
 .main__games__content {
@@ -136,7 +137,7 @@
     align-items: center;
     padding: 24px;
     border-radius: 50%;
-    background-color: rgba(254, 220, 98, 0.15);
+    background-color: var(--bg_input);
 }
 
 .main__games__plus__icon {
@@ -146,4 +147,12 @@
 .main__games__select__file {
     display: none;
     height: 24px;
+}
+
+.main__games__back__arrow {
+    width: 42px;
+    border-radius: 50%;
+    padding: 8px;
+    background-color: var(--bg_input);
+    cursor: pointer;
 }
