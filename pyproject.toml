@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "savesync"
+version = "0.0.1"
+description = "SaveSync é um projeto para permitir que os jogadores salvem seus save.game na nuvem e sincronizem seus saves em diferentes dispositivos."
+authors = ["Anderson <eusouanderson@outlook.com>"]
+license = "GNU GENERAL PUBLIC LICENSE"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
