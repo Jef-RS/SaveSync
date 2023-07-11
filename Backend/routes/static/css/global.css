@@ -6,6 +6,7 @@
   --bg_color: #202020;
   --text_color: #FEDC62;
   --text_color_secondary: #FD6A00;
+  --bg_input: rgba(254, 220, 98, 0.15);
 }
 
 input{
@@ -26,6 +27,13 @@ body {
 
 .hover:hover {
   background-color: rgba(253, 106, 0, 0.5);
+  cursor: pointer;
+  transition: 180ms all ease;
+}
+
+.hover_2:hover {
+  background: rgba(180, 99, 66, 0.829);
+  color: #f8e08b;
   cursor: pointer;
   transition: 180ms all ease;
 }
