@@ -9,21 +9,20 @@
     <title>Cadastro</title>
 </head>
 <body>
-    <div class="cadastro-container">
-    <h1>Cadastro</h1>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
-    <form method="POST" action="/cadastro">
-        <label for="username">Usuário:</label>
-        <input type="text" name="username" id="username" required><br><br>
-        <label for="password">Senha:</label>
-        <input type="password" name="password" id="password" required><br><br>
-        <label for="confirma_password">Confirme a senha:</label>
-        <input type="password" name="confirma_password" id="confirma_password" required><br><br>
-        <input type="submit" value="Cadastrar">
-    </form>
-    <br>
-    <p>Já possui uma conta? <a href="/login">Faça login aqui</a></p>
+    <header class="signup__header container">
+        <img class="signup__header__image" src="{{ url_for('static', filename='images/icon.png') }}" alt="Logo SaveSync">
+    </header>
+    <main class="signup__main container">
+        <form class="signup__main__form">
+            <h2 class="signup__main__title">Sign up</h2>
+            <label class="signup__main__label" for="username">Username</label>
+            <input class="signup__main__input" type="text" name="username" id="username" required>
+            <label class="signup__main__label" for="password">Password</label>
+            <input style="margin-bottom: 30px;" class="signup__main__input" type="password" name="password" id="password" required>
+            <label class="signup__main__label" for="password">Confirm Password</label>
+            <input style="margin-bottom: 23px;" class="signup__main__input" type="password" name="confirm_password" id="confirm_password" required>
+            <input class="signup__main__submit hover_2" type="submit" value="Create Account">
+        </form>
+    </main>
 </body>
 </html>
